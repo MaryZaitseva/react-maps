@@ -43,7 +43,7 @@ class Home extends React.Component{
 
 		axios
 			.post('/api/locations', {
-				username: this.props.user.username,
+				id: this.props.user._id,
    				locationsArray: addedMarkers
 			})
 			.then(response => {
@@ -53,7 +53,7 @@ class Home extends React.Component{
 
 	handleShow(e){
 		e.preventDefault();
-		axios.get('/api/locations').then(response => {
+		/*axios.get('/api/locations').then(response => {
 			console.log(response.data)
 			if (response.data) {
 				console.log('THERE IS A USER')
@@ -63,7 +63,7 @@ class Home extends React.Component{
 			} else {
 				console.log("No markers")
 			}
-		})
+		})*/
 	}
 		
 	
