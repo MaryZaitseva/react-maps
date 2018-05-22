@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
-import './App.css'
 import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
@@ -118,6 +117,7 @@ class App extends Component {
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
 				<Route	exact path="/login" render={() => <LoginForm _login={this._login} />}/>
 				<Route exact path="/signup" component={SignupForm} />
+				</div>
 		)
 	}
 }

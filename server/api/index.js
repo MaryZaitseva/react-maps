@@ -4,7 +4,6 @@ const User = require('../db/models/user')
 const passport = require('../passport')
 
 router.get('/user', (req, res, next) => {
-	console.log('===== user!!======')
 	console.log(req.user)
 	if (req.user) {
 		return res.json({ user: req.user })
@@ -44,7 +43,6 @@ router.post(
 	'/login',
 	function(req, res, next) {
 		console.log(req.body)
-		console.log('================')
 		next()
 	},
 	passport.authenticate('local'),
@@ -58,7 +56,7 @@ router.post(
 router.post('/logout', (req, res) => {
 	if (req.user) {
 		req.session.destroy()
-		res.clearCookie('connect.sid') // clean up!
+		res.clearCookie('connect.sid')
 		return res.json({ msg: 'logging you out' })
 	} else {
 		return res.json({ msg: 'no user to log out!' })
