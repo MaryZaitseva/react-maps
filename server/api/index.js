@@ -13,10 +13,18 @@ router.get('/user', (req, res, next) => {
 })
 
 router.post('/locations', (req, res, next) => {
-	User.findOne({ _id: req.body.id }, (err, user) => {
+	User.findOne({ _id: req.user._id }, (err, user) => {
 		if (user) {
-			user.update({savedLocations: user.savedLocations.push(req.body.locationsArray)})
 			console.log(user.savedLocations)
+			user.update({savedLocations: user.savedLocations.concat(req.body.locationsArray)}, () => {
+				console.log(user.savedLocations)
+			user.save(function(err){
+            if(!err){
+                console.log('saving user');
+            }
+			})
+			
+        });
 		}
 		else{
 			return res.json({
@@ -24,16 +32,12 @@ router.post('/locations', (req, res, next) => {
 			})
 		}
 	})
-	/*console.log(req.body);
-	let newLocations = req.body.locationsArray[0];
-	console.log(newLocations);
-	User.findOneAndUpdate({_id: req.body.id}, {$push: {savedLocations: newLocations}})*/
 })
 
 router.get('/locations', (req, res, next) => {
-	User.findOne({ 'username': req.body.username }, (err, user) => {
+	User.findOne({ _id: req.user._id }, (err, user) => {
 		if (user) {
-			return user.savedLocations;
+			return res.json(user.savedLocations)
 		}
 		else{
 			return res.json({
