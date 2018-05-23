@@ -23,7 +23,7 @@ class Home extends React.Component{
 		});
 		this.setState({map: map})
 		map.on('click', (e) => {
-            let marker = DG.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+           let marker = DG.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
            this.setState({addedMarkers: this.state.addedMarkers.concat([marker])})
         });
         DG.control.zoom().addTo(map).setPosition("bottomright");
@@ -38,6 +38,7 @@ class Home extends React.Component{
 		this.state.addedMarkers.forEach((item) =>{
 					item.remove()
 				})
+		this.setState({addedMarkers: []})
 		axios
 			.post('/api/locations', {
 				id: this.props.user._id,
@@ -54,7 +55,12 @@ class Home extends React.Component{
 			console.log(response.data)
 			if (response.data) {
 				let savedLocations = response.data.savedLocations;
-				savedLocations.forEach(item => DG.marker([item[0], item[1]]).addTo(this.state.map))
+				savedLocations.forEach(item => {
+					let marker = DG.marker([item[0], item[1]]).addTo(this.state.map)
+					this.setState({addedMarkers: this.state.addedMarkers.concat([marker])})
+				}
+					
+					)
 			} else {
 				console.log("No markers")
 			}
@@ -66,8 +72,9 @@ class Home extends React.Component{
 		return (
 			<div>
 			<div className="map" ref="map"></div>
-			<button onClick={this.handleSave}>Save all markers</button><br/>
-	    	<button onClick={this.handleShow}>Show all markers</button>
+			{this.props.user ? <div><button onClick={this.handleSave}>Save all markers</button><br/>
+	    	<button onClick={this.handleShow}>Show all markers</button></div> : <p>Log in to save your markers</p>}
+			
 	    	</div>
     	)	
 	}

@@ -15,7 +15,9 @@ router.get('/user', (req, res, next) => {
 router.post('/locations', (req, res, next) => {
 	User.findOne({ _id: req.user._id }, (err, user) => {
 		if (user) {
-			user.update({savedLocations: user.savedLocations.concat(req.body.locationsArray)}, () => {
+			user.update({savedLocations: user.savedLocations.concat(req.body.locationsArray).filter((elem, index, self) => {
+				return index === self.indexOf(elem);
+			})}, () => {
 				user.save(function(err){
 	            if(!err){
 	                console.log('saving locations');
