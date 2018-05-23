@@ -15,13 +15,11 @@ router.get('/user', (req, res, next) => {
 router.post('/locations', (req, res, next) => {
 	User.findOne({ _id: req.user._id }, (err, user) => {
 		if (user) {
-			console.log(user.savedLocations)
 			user.update({savedLocations: user.savedLocations.concat(req.body.locationsArray)}, () => {
-				console.log(user.savedLocations)
-			user.save(function(err){
-            if(!err){
-                console.log('saving user');
-            }
+				user.save(function(err){
+	            if(!err){
+	                console.log('saving locations');
+	            }
 			})
 			
         });
@@ -37,7 +35,7 @@ router.post('/locations', (req, res, next) => {
 router.get('/locations', (req, res, next) => {
 	User.findOne({ _id: req.user._id }, (err, user) => {
 		if (user) {
-			return res.json(user.savedLocations)
+			return res.json({savedLocations: user.savedLocations})
 		}
 		else{
 			return res.json({

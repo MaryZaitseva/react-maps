@@ -111,7 +111,6 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<h1>This is the main App component</h1>
 				<Header user={this.state.user} />
 				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
