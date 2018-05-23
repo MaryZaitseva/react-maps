@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
-import LoginForm from './components/Login/LoginForm'
+import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
@@ -9,42 +9,42 @@ import Home from './components/Home'
 const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
+			<div className="links">
+				<ul>
+					<li>
+						<Link to="/">
 							Home
 						</Link>
 					</li>
 					<li>
-						<Link to="#" className="nav-link" onClick={props._logout}>
+						<Link to="#" onClick={props._logout}>
 							Logout
 						</Link>
 					</li>
 				</ul>
-			</nav>
+			</div>
 		)
 	} else {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
+			<div className="links">
+				<ul>
+					<li>
+						<Link to="/">
 							Home
 						</Link>
 					</li>
-					<li className="nav-item">
-						<Link to="/login" className="nav-link">
-							login
+					<li>
+						<Link to="/login">
+							Log In
 						</Link>
 					</li>
-					<li className="nav-item">
-						<Link to="/signup" className="nav-link">
-							sign up
+					<li>
+						<Link to="/signup">
+							Sign Up
 						</Link>
 					</li>
 				</ul>
-			</nav>
+			</div>
 		)
 	}
 }

@@ -3,7 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import DG from '2gis-maps'
 
-class Home extends React.Component{
+class Map extends React.Component{
 
 	constructor(props){
 		super(props);
@@ -80,4 +80,4 @@ class Home extends React.Component{
 	}
 }
 
-export default Home
+export default Map

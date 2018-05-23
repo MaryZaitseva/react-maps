@@ -1,5 +1,4 @@
 import React from 'react'
-// TODO - add proptypes
 
 const Header = props => {
 	let Greeting
@@ -9,12 +8,6 @@ const Header = props => {
 		Greeting = (
 			<p>
 				Welcome back, <strong>{props.user.username}</strong>
-			</p>
-		)
-	} else if (props.username) {
-		Greeting = (
-			<p>
-				Welcome back, <strong>{props.user.username} </strong>
 			</p>
 		)
 	}

@@ -44,7 +44,7 @@ class SignupForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
-			<div className="SignupForm">
+			<form onSubmit={this.handleSubmit}>
 				<h1>Signup form</h1>
 				<label htmlFor="username">Username: </label>
 				<input
@@ -67,8 +67,8 @@ class SignupForm extends Component {
 					value={this.state.confirmPassword}
 					onChange={this.handleChange}
 				/>
-				<button onClick={this.handleSubmit}>Sign up</button>
-			</div>
+				<button type="submit">Sign up</button>
+			</form>
 		)
 	}
 }
